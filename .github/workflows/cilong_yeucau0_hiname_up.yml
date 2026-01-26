@@ -18,6 +18,6 @@ jobs:
 
     - name: --- test after up
       run: |
-        docker run -e NAME="$NAME" coldshort/todb18-cuoikhoa-yeucau0-hiname | tee /tmp/t
+        docker run -e NAME="$NAME" coldshort/todb18_long_cuoikhoa | tee /tmp/t
         cat /tmp/t | grep 'Hi'
         cat /tmp/t | grep "$NAME"
