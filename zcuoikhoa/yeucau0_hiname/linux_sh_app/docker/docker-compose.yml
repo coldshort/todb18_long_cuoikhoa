@@ -2,4 +2,4 @@ services:
   app:
     image: coldshort/todb18_long_cuoikhoa:latest
     environment:
-      NAME: ${NAME:-nam}
+      NAME: ${NAME:-long}

@@ -3,6 +3,9 @@ name: cilong_yeucau0_hiname_up
 on:
   workflow_dispatch:
 
+env:
+  NAME: long
+
 jobs:
   up-job:
     runs-on: ubuntu-22.04
