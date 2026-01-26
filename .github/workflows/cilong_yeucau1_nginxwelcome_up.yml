@@ -1,0 +1,6 @@
+name: cilong_yeucau1_nginxwelcome_up
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
