@@ -1,0 +1,29 @@
+name: cilong_yeucau0_hiname_build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-job:
+    runs-on: ubuntu-22.04
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Docker login
+      uses: docker/login-action@v3
+      with:
+        username: ${{ vars.DOCKER_LOGIN_USER }}
+        password: ${{ secrets.DOCKER_PERSONAL_ACCESS_TOKEN }}
+        
+    - name: --- build docker image
+      run: |
+        t=coldshort/todb18_long_cuoikhoa
+
+        echo == build image say hi ie coldshort/todb18_long_cuoikhoa
+        echo Hi :name!
+        
+        cd ./zcuoikhoa/yeucau0_hiname/linux_sh_app/docker
+        set -x # print exec cmd
+        docker build -t $t .
+        docker push     $t 

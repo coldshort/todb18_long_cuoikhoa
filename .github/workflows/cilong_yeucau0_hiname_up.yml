@@ -1,0 +1,23 @@
+name: cilong_yeucau0_hiname_up
+
+on:
+  workflow_dispatch:
+
+jobs:
+  up-job:
+    runs-on: ubuntu-22.04
+    steps:
+
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: --- up docker image
+      run: |
+        cd zcuoikhoa/yeucau0_hiname/linux_sh_app/docker
+        docker compose up
+
+    - name: --- test after up
+      run: |
+        docker run -e NAME="$NAME" coldshort/todb18-cuoikhoa-yeucau0-hiname | tee /tmp/t
+        cat /tmp/t | grep 'Hi'
+        cat /tmp/t | grep "$NAME"
