@@ -22,7 +22,7 @@ jobs:
       - name: Login DockerHub
         uses: docker/login-action@v3
         with:
-          username: ${{ vars.DOCKER_LOGIN_USER }}
+          username: coldshort
           password: ${{ secrets.DOCKER_PERSONAL_ACCESS_TOKEN }}
 
       - name: Build & Push
