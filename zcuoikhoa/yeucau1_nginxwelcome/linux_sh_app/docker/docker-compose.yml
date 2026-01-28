@@ -1,0 +1,12 @@
+services:
+  web:
+    image: namgivu/todb18_cuoikhoa-yeucau1-nginxwelcome:latest
+    ports:
+      - "8080:80"
+    environment:
+      NAME: "Long"
+    command: >
+      /bin/sh -c
+      "envsubst < /usr/share/nginx/html/index.template.html
+      > /usr/share/nginx/html/index.html
+      && nginx -g 'daemon off;'"
