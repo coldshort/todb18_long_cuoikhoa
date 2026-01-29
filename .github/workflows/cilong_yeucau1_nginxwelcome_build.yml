@@ -6,7 +6,7 @@ on:
     branches: [ "main" ]
     paths:
       - "zcuoikhoa/yeucau1_nginxwelcome/**"
-      - ".github/workflows/cinam_yeucau1_nginxwelcome_build.yml"
+      - ".github/workflows/cilong_yeucau1_nginxwelcome_build.yml"
 
 jobs:
   build-and-push:
@@ -32,5 +32,5 @@ jobs:
           file: zcuoikhoa/yeucau1_nginxwelcome/linux_sh_app/docker/Dockerfile
           push: true
           tags: |
-            ${{ vars.DOCKER_LOGIN_USER }}/todb18_cuoikhoa-yeucau1-nginxwelcome:latest
-            ${{ secrets.DOCKER_LOGIN_USER }}/todb18_cuoikhoa-yeucau1-nginxwelcome:${{ github.sha }}
+            ${{ vars.DOCKER_LOGIN_USER }}/todb18_cuoikhoa_yeucau1_nginxwelcome:latest
+            ${{ secrets.DOCKER_LOGIN_USER }}/todb18_cuoikhoa_yeucau1_nginxwelcome:${{ github.sha }}
