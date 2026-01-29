@@ -1,4 +1,4 @@
-name: cinam_yeucau1_nginxwelcome_build
+name: cilong_yeucau1_nginxwelcome_build
 
 on:
   workflow_dispatch:
@@ -33,4 +33,4 @@ jobs:
           push: true
           tags: |
             ${{ vars.DOCKER_LOGIN_USER }}/todb18_cuoikhoa_yeucau1_nginxwelcome:latest
-            ${{ secrets.DOCKER_LOGIN_USER }}/todb18_cuoikhoa_yeucau1_nginxwelcome:${{ github.sha }}
+            ${{ vars.DOCKER_LOGIN_USER }}/todb18_cuoikhoa_yeucau1_nginxwelcome:${{ github.sha }}
