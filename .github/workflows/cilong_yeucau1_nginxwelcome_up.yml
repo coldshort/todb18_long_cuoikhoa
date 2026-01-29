@@ -2,7 +2,11 @@ name: cinam_yeucau1_nginxwelcome_up
 
 on:
   workflow_dispatch:
-
+  push:
+    branches: [main] 
+    path:
+      - '.github/workflows/cilong_yeucau1_nginxwelcome_up.yml'
+      - 'zcuoikhoa/yeucau1_nginxwelcome/linux_sh_app/docker/**'
 jobs:
   up-job:
     runs-on: ubuntu-22.04
@@ -15,8 +19,8 @@ jobs:
 
       - name: Docker login
         run: |
-          echo "${{ secrets.DOCKERHUB_TOKEN }}" \
-          | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+          echo "${{ secrets.DOCKER_PERSONAL_ACCESS_TOKEN }}" \
+          | docker login -u "${{ vars.DOCKER_LOGIN_USER }}" --password-stdin
 
       - name: Docker compose up
         run: |

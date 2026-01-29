@@ -1,6 +1,6 @@
 services:
   web:
-    image: namgivu/todb18_cuoikhoa-yeucau1-nginxwelcome:latest
+    image: coldshort/todb18_cuoikhoa_yeucau1_nginxwelcome:latest
     ports:
       - "8080:80"
     environment:
