@@ -49,7 +49,7 @@ jobs:
       - name: --- test after up
         run: |
           sleep 6
-          curl -sL http://localhost:12611 | tee /tmp/out.html
+          curl -sL http://52.221.30.212:12611 | tee /tmp/out.html
           echo
           cat /tmp/out.html | grep "Welcome"
           cat /tmp/out.html | grep "$NAME"
