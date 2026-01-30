@@ -32,9 +32,7 @@ jobs:
 
           ssh -o StrictHostKeyChecking=no \
           long@52.221.30.212 << 'EOF'
-
-          docker rm -f nginxwelcome || true
-
+          cd $gitcloned_d
           cd ./zcuoikhoa/yeucau1_nginxwelcome/nginx_webapp/docker
           set -x
 
