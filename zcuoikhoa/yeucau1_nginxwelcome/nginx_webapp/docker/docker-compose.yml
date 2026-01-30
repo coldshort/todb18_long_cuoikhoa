@@ -2,9 +2,9 @@ services:
   web:
     image: coldshort/todb18_cuoikhoa_yeucau1_nginxwelcome:latest
     ports:
-      - "8080:80"
+     - "${PORT:-8080}:80"
     environment:
-      NAME: "Long"
+      NAME: "${NAME:-someone}"
     command: >
       /bin/sh -c
       "envsubst < /usr/share/nginx/html/index.template.html

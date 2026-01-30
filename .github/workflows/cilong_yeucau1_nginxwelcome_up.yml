@@ -12,6 +12,8 @@ jobs:
     runs-on: ubuntu-22.04
     env:
       NAME: Long
+      PORT: 12611
+      gitcloned_d: /home/long/_/todb18_long_cuoikhoa
 
     steps:
       - name: Checkout
@@ -22,15 +24,34 @@ jobs:
           echo "${{ secrets.DOCKER_PERSONAL_ACCESS_TOKEN }}" \
           | docker login -u "${{ vars.DOCKER_LOGIN_USER }}" --password-stdin
 
-      - name: --- up docker image
+      - name: --- ssh to remote server and up image from checkout code
         run: |
-          cd zcuoikhoa/yeucau1_nginxwelcome/nginx_webapp/docker
-          docker compose up -d
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY_REMOTE_SERVER }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+          ssh -o StrictHostKeyChecking=no \
+          long@52.221.30.212 << 'EOF'
+
+          docker rm -f nginxwelcome || true
+
+          cd ./zcuoikhoa/yeucau1_nginxwelcome/nginx_webapp/docker
+          set -x
+
+          docker compose pull || true
+          PORT=${{ env.PORT }} NAME=${{ env.NAME }} docker compose up -d --remove-orphans --force-recreate
+
+
+      # - name: --- up docker image
+      #   run: |
+      #     cd zcuoikhoa/yeucau1_nginxwelcome/nginx_webapp/docker
+      #     docker compose up -d
 
       - name: --- test after up
         run: |
           sleep 3
-          curl -sL http://localhost:8080 | tee /tmp/out.html
+          curl -sL http://localhost:12611 | tee /tmp/out.html
+          echo
           cat /tmp/out.html | grep "Welcome"
           cat /tmp/out.html | grep "$NAME"
 

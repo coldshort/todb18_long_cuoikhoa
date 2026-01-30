@@ -41,4 +41,6 @@ jobs:
           docker compose up -d
           sleep 3
           curl -sL http://localhost:8080 | tee /tmp/t
+          echo
           cat /tmp/t | grep 'Welcome'
+  
