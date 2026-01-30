@@ -48,7 +48,7 @@ jobs:
 
       - name: --- test after up
         run: |
-          sleep 3
+          sleep 6
           curl -sL http://localhost:12611 | tee /tmp/out.html
           echo
           cat /tmp/out.html | grep "Welcome"
