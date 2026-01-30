@@ -7,14 +7,16 @@ on:
     path:
       - '.github/workflows/cilong_yeucau1_nginxwelcome_up.yml'
       - 'zcuoikhoa/yeucau1_nginxwelcome/nginx_webapp/docker/**'
-jobs:
-  up-job:
-    runs-on: ubuntu-22.04
-    env:
+
+env:
       NAME: Long
       PORT: 12611
       gitcloned_d: /home/long/_/todb18_long_cuoikhoa/todb18_long_cuoikhoa
 
+jobs:
+  up-job:
+    runs-on: ubuntu-22.04
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,6 +34,7 @@ jobs:
 
           ssh -o StrictHostKeyChecking=no \
           long@52.221.30.212 << 'EOF'
+          echo $gitcloned_d
           cd $gitcloned_d
           cd ./zcuoikhoa/yeucau1_nginxwelcome/nginx_webapp/docker
           set -x
