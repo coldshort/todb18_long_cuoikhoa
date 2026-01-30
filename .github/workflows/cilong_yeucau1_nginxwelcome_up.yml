@@ -13,7 +13,7 @@ jobs:
     env:
       NAME: Long
       PORT: 12611
-      gitcloned_d: /home/long/_/todb18_long_cuoikhoa
+      gitcloned_d: /home/long/_/todb18_long_cuoikhoa/todb18_long_cuoikhoa
 
     steps:
       - name: Checkout
