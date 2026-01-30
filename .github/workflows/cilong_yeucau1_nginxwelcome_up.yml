@@ -36,26 +36,15 @@ jobs:
            ssh -o StrictHostKeyChecking=no long@52.221.30.212 \
             "GITCLONED_D='${{ env.gitcloned_d }}' PORT='${{ env.PORT }}' NAME='${{ env.NAME }}' bash -s" <<'EOF'
             set -euxo pipefail
-
             echo "GITCLONED_D=$GITCLONED_D"
-             echo "PORT=$PORT, NAME=$NAME"
-
+            echo "PORT=$PORT, NAME=$NAME"
             cd "$GITCLONED_D"
-
-
             ls -la zcuoikhoa/yeucau1_nginxwelcome/nginx_webapp/docker
-
             cd zcuoikhoa/yeucau1_nginxwelcome/nginx_webapp/docker
 
-           docker compose pull || true
+            docker compose pull || true
             PORT="$PORT" NAME="$NAME" docker compose up -d --remove-orphans --force-recreate
             EOF
-
-
-      # - name: --- up docker image
-      #   run: |
-      #     cd zcuoikhoa/yeucau1_nginxwelcome/nginx_webapp/docker
-      #     docker compose up -d
 
       - name: --- test after up
         run: |
