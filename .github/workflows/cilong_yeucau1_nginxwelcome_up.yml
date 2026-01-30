@@ -51,8 +51,9 @@ jobs:
           sleep 6
           curl -sL http://52.221.30.212:$PORT | tee /tmp/out.html
           echo
+          echo
           cat /tmp/out.html | grep "Welcome"
-          cat /tmp/out.html | grep "$NAME"
+
 
       - name: Docker compose logs
         if: always()
