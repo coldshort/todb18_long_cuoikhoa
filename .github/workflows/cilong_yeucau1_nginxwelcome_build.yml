@@ -39,6 +39,6 @@ jobs:
         run: |
           cd ./zcuoikhoa/yeucau1_nginxwelcome/nginx_webapp/docker
           docker compose up -d
-
+          sleep 3
           curl -sL http://localhost:8080 | tee /tmp/t
           cat /tmp/t | grep 'Welcome'
