@@ -1,0 +1,46 @@
+name: cilong_yeucau1_nginxwelcome_build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "zcuoikhoa/yeucau1_nginxwelcome/**"
+      - ".github/workflows/cilong_yeucau1_nginxwelcome_build.yml"
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: coldshort
+          password: ${{ secrets.DOCKER_PERSONAL_ACCESS_TOKEN }}
+
+      - name: --- Build & Push
+        uses: docker/build-push-action@v6
+        with:
+          context: zcuoikhoa/yeucau1_nginxwelcome/nginx_webapp/docker
+          file: zcuoikhoa/yeucau1_nginxwelcome/nginx_webapp/docker/Dockerfile
+          push: true
+          tags: |
+            ${{ vars.DOCKER_LOGIN_USER }}/todb18_cuoikhoa_yeucau1_nginxwelcome:latest
+            ${{ vars.DOCKER_LOGIN_USER }}/todb18_cuoikhoa_yeucau1_nginxwelcome:${{ github.sha }}
+
+      - name: --- test after build
+        run: |
+          cd ./zcuoikhoa/yeucau1_nginxwelcome/nginx_webapp/docker
+          docker compose up -d
+          sleep 3
+          curl -sL http://localhost:8080 | tee /tmp/t
+          echo
+          cat /tmp/t | grep 'Welcome'
+  
