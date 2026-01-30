@@ -6,7 +6,7 @@ on:
     branches: [main] 
     path:
       - '.github/workflows/cilong_yeucau1_nginxwelcome_up.yml'
-      - 'zcuoikhoa/yeucau1_nginxwelcome/linux_sh_app/docker/**'
+      - 'zcuoikhoa/yeucau1_nginxwelcome/nginx_webapp/docker/**'
 jobs:
   up-job:
     runs-on: ubuntu-22.04
@@ -22,20 +22,20 @@ jobs:
           echo "${{ secrets.DOCKER_PERSONAL_ACCESS_TOKEN }}" \
           | docker login -u "${{ vars.DOCKER_LOGIN_USER }}" --password-stdin
 
-      - name: Docker compose up
+      - name: --- up docker image
         run: |
-          cd zcuoikhoa/yeucau1_nginxwelcome/linux_sh_app/docker
+          cd zcuoikhoa/yeucau1_nginxwelcome/nginx_webapp/docker
           docker compose up -d
 
-      - name: Test result
+      - name: --- test after up
         run: |
           sleep 3
-          curl -s http://localhost:8080 | tee /tmp/out.html
+          curl -sL http://localhost:8080 | tee /tmp/out.html
           cat /tmp/out.html | grep "Welcome"
           cat /tmp/out.html | grep "$NAME"
 
       - name: Docker compose logs
         if: always()
         run: |
-          cd zcuoikhoa/yeucau1_nginxwelcome/linux_sh_app/docker
+          cd zcuoikhoa/yeucau1_nginxwelcome/nginx_webapp/docker
           docker compose logs

@@ -25,12 +25,20 @@ jobs:
           username: coldshort
           password: ${{ secrets.DOCKER_PERSONAL_ACCESS_TOKEN }}
 
-      - name: Build & Push
+      - name: --- Build & Push
         uses: docker/build-push-action@v6
         with:
-          context: zcuoikhoa/yeucau1_nginxwelcome/linux_sh_app/docker
-          file: zcuoikhoa/yeucau1_nginxwelcome/linux_sh_app/docker/Dockerfile
+          context: zcuoikhoa/yeucau1_nginxwelcome/nginx_webapp/docker
+          file: zcuoikhoa/yeucau1_nginxwelcome/nginx_webapp/docker/Dockerfile
           push: true
           tags: |
             ${{ vars.DOCKER_LOGIN_USER }}/todb18_cuoikhoa_yeucau1_nginxwelcome:latest
             ${{ vars.DOCKER_LOGIN_USER }}/todb18_cuoikhoa_yeucau1_nginxwelcome:${{ github.sha }}
+
+      - name: --- test after build
+        run: |
+          cd ./zcuoikhoa/yeucau1_nginxwelcome/nginx_webapp/docker
+          docker compose up -d
+
+          curl -sL http://localhost:80 | tee /tmp/t
+          cat /tmp/t | grep 'Welcome'
