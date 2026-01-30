@@ -44,7 +44,7 @@ jobs:
 
             docker compose pull || true
             PORT="$PORT" NAME="$NAME" docker compose up -d --remove-orphans --force-recreate
-            EOF
+           EOF
 
       - name: --- test after up
         run: |
