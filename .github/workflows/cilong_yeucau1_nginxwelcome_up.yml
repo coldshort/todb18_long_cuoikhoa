@@ -50,8 +50,8 @@ jobs:
         run: |
           sleep 6
           curl -sL http://52.221.30.212:$PORT | tee /tmp/out.html
-          echo
-          echo
+          echo ==============
+          echo =====test=====
           cat /tmp/out.html | grep "Welcome"
 
 
