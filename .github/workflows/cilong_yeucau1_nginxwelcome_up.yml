@@ -26,21 +26,30 @@ jobs:
           echo "${{ secrets.DOCKER_PERSONAL_ACCESS_TOKEN }}" \
           | docker login -u "${{ vars.DOCKER_LOGIN_USER }}" --password-stdin
 
-      - name: --- ssh to remote server and up image from checkout code
+      - name: --- ssh to remote server and up image
+
         run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY_REMOTE_SERVER }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
+           mkdir -p ~/.ssh
+           echo "${{ secrets.SSH_PRIVATE_KEY_REMOTE_SERVER }}" > ~/.ssh/id_rsa
+           chmod 600 ~/.ssh/id_rsa
 
-          ssh -o StrictHostKeyChecking=no \
-          long@52.221.30.212 << 'EOF'
-          echo $gitcloned_d
-          cd $gitcloned_d
-          cd ./zcuoikhoa/yeucau1_nginxwelcome/nginx_webapp/docker
-          set -x
+           ssh -o StrictHostKeyChecking=no long@52.221.30.212 \
+            "GITCLONED_D='${{ env.gitcloned_d }}' PORT='${{ env.PORT }}' NAME='${{ env.NAME }}' bash -s" <<'EOF'
+            set -euxo pipefail
 
-          docker compose pull || true
-          PORT=${{ env.PORT }} NAME=${{ env.NAME }} docker compose up -d --remove-orphans --force-recreate
+            echo "GITCLONED_D=$GITCLONED_D"
+             echo "PORT=$PORT, NAME=$NAME"
+
+            cd "$GITCLONED_D"
+
+
+            ls -la zcuoikhoa/yeucau1_nginxwelcome/nginx_webapp/docker
+
+            cd zcuoikhoa/yeucau1_nginxwelcome/nginx_webapp/docker
+
+           docker compose pull || true
+            PORT="$PORT" NAME="$NAME" docker compose up -d --remove-orphans --force-recreate
+            EOF
 
 
       # - name: --- up docker image
