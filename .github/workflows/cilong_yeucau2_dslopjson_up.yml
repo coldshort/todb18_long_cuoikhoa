@@ -34,6 +34,8 @@ jobs:
 
           printf '\n--- git pull latest code\n'
           cd /home/long/_/todb18_long_cuoikhoa/todb18_long_cuoikhoa
+          ls -al
+          du -sh *
           git fetch --all
 
           printf '\n--- up stack webapp+apiapp fr image\n'
