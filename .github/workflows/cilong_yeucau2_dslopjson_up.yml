@@ -34,13 +34,15 @@ jobs:
 
           printf '\n--- git pull latest code\n'
           cd /home/long/_/todb18_long_cuoikhoa/todb18_long_cuoikhoa
-          ls -al
-          du -sh *
           git fetch --all
 
           printf '\n--- up stack webapp+apiapp fr image\n'
-          cd ./zcuoikhoa/yeucau2_dslopjson/webapp/flask_webapp/zdocker-image-fr-dockerhub
-
+          cd ./zcuoikhoa
+          cd ./yeucau2_dslopjson
+          cd ./webapp
+          cd ./flask_webapp
+          cd ./zdocker-image-fr-dockerhub
+          # cd ./zcuoikhoa/yeucau2_dslopjson/webapp/flask_webapp/zdocker-image-fr-dockerhub
           docker compose \
             -f ./docker-compose--image-fr-dockerhub.yml \
             --progress=plain up --force-recreate -d  --remove-orphans  --pull always
