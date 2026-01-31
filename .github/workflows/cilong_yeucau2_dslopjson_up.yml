@@ -16,7 +16,7 @@ jobs:
       - name: --- add ssh key
         uses: webfactory/ssh-agent@v0.9.0
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATEKEY_LONG }}
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY_REMOTE_SERVER }}
       - name: --- setup known_hosts
         shell: bash
         run: |
