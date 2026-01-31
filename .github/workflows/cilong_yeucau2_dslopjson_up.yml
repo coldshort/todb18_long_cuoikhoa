@@ -33,12 +33,11 @@ jobs:
           set -x
 
           printf '\n--- git pull latest code\n'
-          cd /home/long/_/todb18_danhsachlop
+          cd /home/long/_/todb18_long_cuoikhoa/todb18_long_cuoikhoa
           git fetch --all
-          git switch -C ci/long-build origin/ci/long-build  # branch that has this file to up docker-compose--image-fr-dockerhub.yml
 
           printf '\n--- up stack webapp+apiapp fr image\n'
-          cd ./docker-learn/zdockerize_python/webapp_gitcloned/flask_webapp/zdocker-image-fr-dockerhub
+          cd ./zcuoikhoa/yeucau2_dslopjson/webapp/flask_webapp/zdocker-image-fr-dockerhub
 
           docker compose \
             -f ./docker-compose--image-fr-dockerhub.yml \

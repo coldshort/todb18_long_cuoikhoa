@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main] 
-    path:
+    paths:
       - '.github/workflows/cilong_yeucau1_nginxwelcome_up.yml'
       - 'zcuoikhoa/yeucau1_nginxwelcome/nginx_webapp/docker/**'
 
