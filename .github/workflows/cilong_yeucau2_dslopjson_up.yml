@@ -38,6 +38,7 @@ jobs:
 
           printf '\n--- up stack webapp+apiapp fr image\n'
           cd ./zcuoikhoa
+          ls -al
           cd ./yeucau2_dslopjson
           cd ./webapp
           cd ./flask_webapp
