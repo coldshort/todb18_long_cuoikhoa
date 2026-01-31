@@ -43,7 +43,7 @@ services:
   apiapp:
     build:
      #context: ...zdockerize_python/
-      context:             ../../../apiapp_gitcloned/flask_apiapp
+      context:             ../../../apiapp/flask_apiapp
       dockerfile:                                                ../zdocker/Dockerfile
     image: flask-apiapp-i
 

@@ -23,10 +23,12 @@ jobs:
 
       - name: --- build image - Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+
       - name: --- build image - 🔔webapp
         run: |
           cd ./zcuoikhoa/yeucau2_dslopjson/webapp/flask_webapp/zdocker
           docker compose --progress=plain build --no-cache  # build flask-webapp-i  ref docker-compose.yml
+          
       - name: --- build image - 🔔apiapp
         run: |
           cd ./zcuoikhoa/yeucau2_dslopjson/apiapp/zdocker
